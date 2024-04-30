@@ -83,6 +83,28 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					fmt.Println("Error executing feh command:", err)
 				}
 			}()
+
+         case "alt", "a":
+             // Show selected wallpaper with feh
+
+             _, ok := m.selected[m.cursor]
+			if ok {
+				delete(m.selected, m.cursor)
+			} else {
+				m.selected[m.cursor] = struct{}{}
+			}
+
+			// Execute feh command with the selected wallpaper
+			go func() {
+				path := "/home/tiramisu/wallpapers/" + m.choices[m.cursor]
+				cmd := exec.Command("feh", path)
+				err := cmd.Run()
+				if err != nil {
+					fmt.Println("Error executing feh command:", err)
+				}
+			}()
+
+
 		}
 	}
 
@@ -120,4 +142,3 @@ func (m model) View() string {
 	// Send the UI for rendering
 	return s
 }
-
