@@ -10,10 +10,11 @@ Requires feh to be installed.
 
 ```bash
 
-git clone
-cd GoWallpaper
-go build
-sudo mv GoWallpaper /usr/bin
+git clone https://github.com/JoaoPec/goWallpaper.git
+
+cd goWallpaper
+
+./install.sh
 
 ```
 
