@@ -64,6 +64,18 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.cursor++
 			}
 
+        // Jump 3 items down
+        case "d":
+            if m.cursor < len(m.choices)-3 {
+                m.cursor += 3
+            }
+
+        // Jump 3 items up
+        case "u":
+            if m.cursor > 2 {
+                m.cursor -= 3
+            }
+
 		// The "enter" key and the spacebar (a literal space) toggle
 		// the selected state for the item that the cursor is pointing at.
 		case "enter", " ":
